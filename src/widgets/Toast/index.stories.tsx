@@ -20,9 +20,9 @@ export const Default: React.FC = () => {
       id: `id-${now}`,
       title: `Title: ${now}`,
       telegramDescription:
-        "Share your earnings on Biswap and win a part of $2530 in BSW Prize Pool for 253 winners every week! #biswap_sharing",
+        "Share your earnings on HexaFinity and win a part of $2530 in BSW Prize Pool for 253 winners every week! #hexafinity_sharing",
       tweeterDescription:
-        "Share your earnings on Biswap and win a part of $2530 in BSW Prize Pool for 253 winners every week! #biswap_earn",
+        "Share your earnings on HexaFinity and win a part of $2530 in BSW Prize Pool for 253 winners every week! #hexafinity_earn",
       description,
       hash: "hash",
       type: alertVariants[sample(Object.keys(alertVariants))],
@@ -81,9 +81,9 @@ export const WithAction: React.FC = () => {
         "Share your earnings on Twitter and win a part of <strong>$2200 in BSW</strong> Prize Pool for 202 winners every week!",
       hash: "aeafwa",
       telegramDescription:
-        "Share your earnings on Biswap and win a part of $2530 in BSW Prize Pool for 253 winners every week! #biswap_sharing",
+        "Share your earnings on HexaFinity and win a part of $2530 in BSW Prize Pool for 253 winners every week! #hexafinity_sharing",
       tweeterDescription:
-        "Share your earnings on Biswap and win a part of $2530 in BSW Prize Pool for 253 winners every week! #biswap_earn",
+        "Share your earnings on HexaFinity and win a part of $2530 in BSW Prize Pool for 253 winners every week! #hexafinity_earn",
       type: alertVariants[sample(Object.keys(alertVariants))],
     };
 

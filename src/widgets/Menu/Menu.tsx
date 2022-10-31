@@ -276,7 +276,7 @@ const Menu: React.FC<NavProps> = ({
           {/*{showFishingWarn && (*/}
           {/*  <FishingWarn showFishingWarn={showFishingWarn}>*/}
           {/*    <StyledImgWarnIcon />*/}
-          {/*    <Label>Beware of fake Biswap websites! Use only official site: biswap.org</Label>*/}
+          {/*    <Label>Beware of fake HexaFinity websites! Use only official site: hexafinity.org</Label>*/}
           {/*    <Button variant="text" scale="sm" onClick={closeWarn}>*/}
           {/*      <CloseIcon color="background" />*/}
           {/*    </Button>*/}

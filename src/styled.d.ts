@@ -1,7 +1,7 @@
 import "styled-components";
-import { BiswapTheme } from "./theme";
+import { HexaFinityTheme } from "./theme";
 
 declare module "styled-components" {
   /* eslint-disable @typescript-eslint/no-empty-interface */
-  export interface DefaultTheme extends BiswapTheme {}
+  export interface DefaultTheme extends HexaFinityTheme {}
 }

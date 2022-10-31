@@ -7744,7 +7744,7 @@ var links = [
         showItemsOnMobile: true,
     },
     {
-        label: "Biswap Products",
+        label: "HexaFinity Products",
         href: "/",
         icon: "ProductsOpacity",
         isMobileNav: true,
@@ -7775,68 +7775,68 @@ var socials = [
             channel: {
                 icon: "LogoIcon",
                 label: "Channel",
-                href: "https://t.me/biswap_news",
+                href: "https://t.me/hexafinity_news",
             },
             chats: [
                 {
                     icon: "USAIcon",
                     label: "English",
-                    href: "https://t.me/biswap",
+                    href: "https://t.me/hexafinity",
                 },
                 {
                     icon: "IDIcon",
                     label: "Bahasa",
-                    href: "https://t.me/biswap_idn",
+                    href: "https://t.me/hexafinity_idn",
                 },
                 {
                     icon: "RUIcon",
                     label: "Русский",
-                    href: "https://t.me/biswap_rus",
+                    href: "https://t.me/hexafinity_rus",
                 },
                 {
                     icon: "VNIcon",
                     label: "Tiếng Việt",
-                    href: "https://t.me/biswap_vnm",
+                    href: "https://t.me/hexafinity_vnm",
                 },
                 // {
                 //   icon: 'BDIcon',
                 //   label: "Bangladesh",
-                //   href: "https://t.me/biswap_bgd",
+                //   href: "https://t.me/hexafinity_bgd",
                 // },
                 {
                     icon: "FRIcon",
                     label: "La France",
-                    href: "https://t.me/biswap_france",
+                    href: "https://t.me/hexafinity_france",
                 },
                 {
                     icon: "PTIcon",
                     label: "Portugal",
-                    href: "https://t.me/biswap_prt",
+                    href: "https://t.me/hexafinity_prt",
                 },
                 {
                     icon: "DEIcon",
                     label: "Germany",
-                    href: "https://t.me/biswap_germany",
+                    href: "https://t.me/hexafinity_germany",
                 },
                 {
                     icon: "CNIcon",
                     label: "Сhina",
-                    href: "https://t.me/biswap_china",
+                    href: "https://t.me/hexafinity_china",
                 },
                 {
                     icon: "TRIcon",
                     label: "Turkey",
-                    href: "https://t.me/biswap_turkey",
+                    href: "https://t.me/hexafinity_turkey",
                 },
                 {
                     icon: "ESIcon",
                     label: "Espanol",
-                    href: "https://t.me/biswap_espanol",
+                    href: "https://t.me/hexafinity_espanol",
                 },
                 {
                     icon: "INIcon",
                     label: "India",
-                    href: "https://t.me/biswap_india",
+                    href: "https://t.me/hexafinity_india",
                 },
             ],
         },
@@ -7844,12 +7844,12 @@ var socials = [
     {
         label: "Twitter",
         icon: "TwitterIcon",
-        href: "https://twitter.com/Biswap_DEX",
+        href: "https://twitter.com/HexaFinity_DEX",
     },
     {
         label: "Medium",
         icon: "MediumIcon",
-        href: "https://biswap-dex.medium.com/",
+        href: "https://hexafinity-dex.medium.com/",
     },
     {
         label: "Youtube",
@@ -7859,7 +7859,7 @@ var socials = [
     {
         label: "Instagram",
         icon: "InstagramIcon",
-        href: "https://www.instagram.com/biswap_org/",
+        href: "https://www.instagram.com/hexafinity_org/",
     },
     {
         label: "Facebook",
@@ -8017,7 +8017,7 @@ var AuditedWrap = styled.div(templateObject_1$m || (templateObject_1$m = __makeT
 });
 var LinkWrap = styled.a(templateObject_2$f || (templateObject_2$f = __makeTemplateObject(["\n  height: fit-content;\n"], ["\n  height: fit-content;\n"])));
 var Audit = function () { return (React.createElement(AuditedWrap, null,
-    React.createElement(LinkWrap, { href: "https://www.certik.org/projects/biswap", target: "_blank" },
+    React.createElement(LinkWrap, { href: "https://www.certik.org/projects/hexafinity", target: "_blank" },
         React.createElement(Icon$p, { style: {
                 padding: "8px 16px",
                 backgroundColor: "#102648",
@@ -8324,7 +8324,7 @@ var Accordion = function (_a) {
     var _c = useState(false), isOpened = _c[0], setIsOpened = _c[1];
     var isMobile = useMatchBreakpoints().isMobile;
     useEffect(function () {
-        if (!clickable || label === "Biswap Products") {
+        if (!clickable || label === "HexaFinity Products") {
             setIsOpened(true);
         }
     }, [label, clickable, setIsOpened]);
@@ -8569,7 +8569,7 @@ var Logo = function (_a) {
     var innerLogo = (React.createElement(React.Fragment, null,
         React.createElement(Icon$3J, { className: "mobile-icon" }),
         React.createElement(Icon$3I, { className: "desktop-icon" })));
-    return (React.createElement(Flex, null, isAbsoluteUrl ? (React.createElement(StyledInnerButton, { variant: "light", onClick: function () { return window.open(href, "_self"); }, "aria-label": "Biswap home page" }, innerLogo)) : (React.createElement(StyledInnerButton, { variant: "light", onClick: function () { return push(href); }, "aria-label": "Biswap home page" }, innerLogo))));
+    return (React.createElement(Flex, null, isAbsoluteUrl ? (React.createElement(StyledInnerButton, { variant: "light", onClick: function () { return window.open(href, "_self"); }, "aria-label": "HexaFinity home page" }, innerLogo)) : (React.createElement(StyledInnerButton, { variant: "light", onClick: function () { return push(href); }, "aria-label": "HexaFinity home page" }, innerLogo))));
 };
 var templateObject_1$c, templateObject_2$8, templateObject_3$4;
 
@@ -8865,7 +8865,7 @@ var connectors = [
         icon: Icon$1,
         connectorId: ConnectorNames.Injected,
         priority: 4,
-        helpHref: "https://biswap.zendesk.com/hc/en-us/articles/9255441933073-Brave-Wallet-Guide-Settings-Connection-to-Biswap-",
+        helpHref: "https://hexafinity.zendesk.com/hc/en-us/articles/9255441933073-Brave-Wallet-Guide-Settings-Connection-to-HexaFinity-",
         instanceCheckRule: InstanceCheckRules[ConnectorsTitleTypes.BraveWallet],
     },
     {
@@ -8877,7 +8877,7 @@ var connectors = [
         instanceCheckRule: InstanceCheckRules[ConnectorsTitleTypes.Gnosis],
     },
 ];
-var HOW_TO_CONNECT_WALLET_LINK = "https://biswap.zendesk.com/hc/en-us/articles/9302726358033-Connect-Crypto-Wallet-Enjoy-Biswap-to-the-Fullest-";
+var HOW_TO_CONNECT_WALLET_LINK = "https://hexafinity.zendesk.com/hc/en-us/articles/9302726358033-Connect-Crypto-Wallet-Enjoy-HexaFinity-to-the-Fullest-";
 var connectorLocalStorageKey = "connectorId";
 var walletLocalStorageKey = "wallet";
 
@@ -8950,7 +8950,7 @@ var ConnectModal = function (_a) {
             alignItems: "center",
         } },
         React.createElement(StyledText, { fontSize: "12px", ml: isMobile ? "16px" : "32px", mb: "24px" },
-            "By connecting a wallet, you agree to Biswap's",
+            "By connecting a wallet, you agree to HexaFinity's",
             " ",
             React.createElement(Text, { fontSize: "12px", as: "span", color: "primary" },
                 React.createElement("a", { href: "".concat(process.env.REACT_APP_FRONT_1, "/terms"), target: isMobile ? "_self" : "_blank" }, "Terms of Use"))),

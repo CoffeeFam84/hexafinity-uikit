@@ -27,7 +27,7 @@ const LinkWrap = styled.a`
 
 const Audit: FC = () => (
   <AuditedWrap>
-    <LinkWrap href="https://www.certik.org/projects/biswap" target="_blank">
+    <LinkWrap href="https://www.certik.org/projects/hexafinity" target="_blank">
       <CerticAuditedIcon
         style={{
           padding: "8px 16px",

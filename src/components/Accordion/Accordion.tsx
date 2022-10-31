@@ -56,7 +56,7 @@ const Accordion: FC<IProps> = ({
   const { isMobile } = useMatchBreakpoints();
 
   useEffect(() => {
-    if (!clickable || label === "Biswap Products") {
+    if (!clickable || label === "HexaFinity Products") {
       setIsOpened(true);
     }
   }, [label, clickable, setIsOpened]);

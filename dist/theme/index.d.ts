@@ -6,7 +6,7 @@ import { TooltipTheme } from "../components/Tooltip/types";
 import { NavThemeType } from "../widgets/Menu/theme";
 import { ModalTheme } from "../widgets/Modal/types";
 import { Breakpoints, Colors, MediaQueries, Radii, Shadows, Spacing, ZIndices } from "./types";
-export interface BiswapTheme {
+export interface HexaFinityTheme {
     siteWidth: number;
     isDark: boolean;
     alert: AlertTheme;

@@ -129,26 +129,26 @@ export const AsLinks: React.FC = () => {
     <>
       <Row>
         <TabMenu activeIndex={index} onItemClick={setIndex}>
-          <TabMenuItem as="a" href="https://biswap.org/">
-            Biswap 1
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
+            HexaFinity 1
           </TabMenuItem>
-          <TabMenuItem as="a" href="https://biswap.org/">
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
             Link 2
           </TabMenuItem>
-          <TabMenuItem as="a" href="https://biswap.org/">
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
             Example 3
           </TabMenuItem>
         </TabMenu>
       </Row>
       <Row isLight>
         <TabMenu variant="light" activeIndex={index} onItemClick={setIndex}>
-          <TabMenuItem as="a" href="https://biswap.org/">
-            Biswap 1
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
+            HexaFinity 1
           </TabMenuItem>
-          <TabMenuItem as="a" href="https://biswap.org/">
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
             Link 2
           </TabMenuItem>
-          <TabMenuItem as="a" href="https://biswap.org/">
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
             Example 3
           </TabMenuItem>
         </TabMenu>
@@ -251,13 +251,13 @@ export const FullWidthMenu: React.FC = () => {
       </Row>
       <Row>
         <TabMenu fullWidth activeIndex={index} onItemClick={setIndex}>
-          <TabMenuItem as="a" href="https://biswap.org/">
-            Biswap
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
+            HexaFinity
           </TabMenuItem>
-          <TabMenuItem as="a" href="https://biswap.org/">
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
             Link
           </TabMenuItem>
-          <TabMenuItem as="a" href="https://biswap.org/">
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
             Full Width
           </TabMenuItem>
         </TabMenu>
@@ -269,13 +269,13 @@ export const FullWidthMenu: React.FC = () => {
           activeIndex={index}
           onItemClick={setIndex}
         >
-          <TabMenuItem as="a" href="https://biswap.org/">
-            Biswap
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
+            HexaFinity
           </TabMenuItem>
-          <TabMenuItem as="a" href="https://biswap.org/">
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
             Link
           </TabMenuItem>
-          <TabMenuItem as="a" href="https://biswap.org/">
+          <TabMenuItem as="a" href="https://hexafinitytoken.com/">
             Full Width
           </TabMenuItem>
         </TabMenu>

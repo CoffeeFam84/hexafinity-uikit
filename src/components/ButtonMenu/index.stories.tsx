@@ -164,26 +164,26 @@ export const AsLinks: React.FC = () => {
     <>
       <Row>
         <ButtonMenu activeIndex={index} onItemClick={setIndex}>
-          <ButtonMenuItem as="a" href="https://biswap.org/">
-            Biswap 1
+          <ButtonMenuItem as="a" href="https://hexafinitytoken.com/">
+            HexaFinity 1
           </ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://biswap.org/">
+          <ButtonMenuItem as="a" href="https://hexafinitytoken.com/">
             Link 2
           </ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://biswap.org/">
+          <ButtonMenuItem as="a" href="https://hexafinitytoken.com/">
             Example 3
           </ButtonMenuItem>
         </ButtonMenu>
       </Row>
       <Row isLight>
         <ButtonMenu variant="light" activeIndex={index} onItemClick={setIndex}>
-          <ButtonMenuItem as="a" href="https://biswap.org/">
-            Biswap 1
+          <ButtonMenuItem as="a" href="https://hexafinitytoken.com/">
+            HexaFinity 1
           </ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://biswap.org/">
+          <ButtonMenuItem as="a" href="https://hexafinitytoken.com/">
             Link 2
           </ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://biswap.org/">
+          <ButtonMenuItem as="a" href="https://hexafinitytoken.com/">
             Example 3
           </ButtonMenuItem>
         </ButtonMenu>
@@ -363,13 +363,13 @@ export const FullWidthMenu: React.FC = () => {
       </Row>
       <Row>
         <ButtonMenu fullWidth activeIndex={index} onItemClick={setIndex}>
-          <ButtonMenuItem as="a" href="https://biswap.org/">
-            Biswap
+          <ButtonMenuItem as="a" href="https://hexafinitytoken.com/">
+            HexaFinity
           </ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://biswap.org/">
+          <ButtonMenuItem as="a" href="https://hexafinitytoken.com/">
             Link
           </ButtonMenuItem>
-          <ButtonMenuItem as="a" href="https://biswap.org/">
+          <ButtonMenuItem as="a" href="https://hexafinitytoken.com/">
             Full Width
           </ButtonMenuItem>
         </ButtonMenu>

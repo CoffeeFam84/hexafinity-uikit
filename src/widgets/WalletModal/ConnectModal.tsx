@@ -124,7 +124,7 @@ const ConnectModal: React.FC<Props> = ({ login, onDismiss = () => null }) => {
       }}
     >
       <StyledText fontSize="12px" ml={isMobile ? "16px" : "32px"} mb="24px">
-        By connecting a wallet, you agree to Biswap's{" "}
+        By connecting a wallet, you agree to HexaFinity's{" "}
         <Text fontSize="12px" as="span" color="primary">
           <a
             href={`${process.env.REACT_APP_FRONT_1}/terms`}

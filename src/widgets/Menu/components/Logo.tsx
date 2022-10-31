@@ -74,7 +74,7 @@ const Logo: React.FC<Props> = ({ href }) => {
         <StyledInnerButton
           variant="light"
           onClick={() => window.open(href, "_self")}
-          aria-label="Biswap home page"
+          aria-label="HexaFinity home page"
         >
           {innerLogo}
         </StyledInnerButton>
@@ -82,7 +82,7 @@ const Logo: React.FC<Props> = ({ href }) => {
         <StyledInnerButton
           variant="light"
           onClick={() => push(href)}
-          aria-label="Biswap home page"
+          aria-label="HexaFinity home page"
         >
           {innerLogo}
         </StyledInnerButton>

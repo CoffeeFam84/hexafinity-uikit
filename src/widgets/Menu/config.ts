@@ -218,7 +218,7 @@ export const links: MenuItemsType[] = [
     showItemsOnMobile: true,
   },
   {
-    label: "Biswap Products", // if changed label, also should be changed in Accordion component condition
+    label: "HexaFinity Products", // if changed label, also should be changed in Accordion component condition
     href: "/",
     icon: "ProductsOpacity",
     isMobileNav: true,
@@ -250,68 +250,68 @@ export const socials = [
       channel: {
         icon: "LogoIcon",
         label: "Channel",
-        href: "https://t.me/biswap_news",
+        href: "https://t.me/hexafinity_news",
       },
       chats: [
         {
           icon: "USAIcon",
           label: "English",
-          href: "https://t.me/biswap",
+          href: "https://t.me/hexafinity",
         },
         {
           icon: "IDIcon",
           label: "Bahasa",
-          href: "https://t.me/biswap_idn",
+          href: "https://t.me/hexafinity_idn",
         },
         {
           icon: "RUIcon",
           label: "Русский",
-          href: "https://t.me/biswap_rus",
+          href: "https://t.me/hexafinity_rus",
         },
         {
           icon: "VNIcon",
           label: "Tiếng Việt",
-          href: "https://t.me/biswap_vnm",
+          href: "https://t.me/hexafinity_vnm",
         },
         // {
         //   icon: 'BDIcon',
         //   label: "Bangladesh",
-        //   href: "https://t.me/biswap_bgd",
+        //   href: "https://t.me/hexafinity_bgd",
         // },
         {
           icon: "FRIcon",
           label: "La France",
-          href: "https://t.me/biswap_france",
+          href: "https://t.me/hexafinity_france",
         },
         {
           icon: "PTIcon",
           label: "Portugal",
-          href: "https://t.me/biswap_prt",
+          href: "https://t.me/hexafinity_prt",
         },
         {
           icon: "DEIcon",
           label: "Germany",
-          href: "https://t.me/biswap_germany",
+          href: "https://t.me/hexafinity_germany",
         },
         {
           icon: "CNIcon",
           label: "Сhina",
-          href: "https://t.me/biswap_china",
+          href: "https://t.me/hexafinity_china",
         },
         {
           icon: "TRIcon",
           label: "Turkey",
-          href: "https://t.me/biswap_turkey",
+          href: "https://t.me/hexafinity_turkey",
         },
         {
           icon: "ESIcon",
           label: "Espanol",
-          href: "https://t.me/biswap_espanol",
+          href: "https://t.me/hexafinity_espanol",
         },
         {
           icon: "INIcon",
           label: "India",
-          href: "https://t.me/biswap_india",
+          href: "https://t.me/hexafinity_india",
         },
       ],
     },
@@ -319,12 +319,12 @@ export const socials = [
   {
     label: "Twitter",
     icon: "TwitterIcon",
-    href: "https://twitter.com/Biswap_DEX",
+    href: "https://twitter.com/HexaFinity_DEX",
   },
   {
     label: "Medium",
     icon: "MediumIcon",
-    href: "https://biswap-dex.medium.com/",
+    href: "https://hexafinity-dex.medium.com/",
   },
   {
     label: "Youtube",
@@ -334,7 +334,7 @@ export const socials = [
   {
     label: "Instagram",
     icon: "InstagramIcon",
-    href: "https://www.instagram.com/biswap_org/",
+    href: "https://www.instagram.com/hexafinity_org/",
   },
   {
     label: "Facebook",

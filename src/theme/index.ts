@@ -15,7 +15,7 @@ import {
   ZIndices,
 } from "./types";
 
-export interface BiswapTheme {
+export interface HexaFinityTheme {
   siteWidth: number;
   isDark: boolean;
   alert: AlertTheme;

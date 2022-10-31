@@ -114,7 +114,7 @@ const connectors: Config[] = [
     connectorId: ConnectorNames.Injected,
     priority: 4,
     helpHref:
-      "https://biswap.zendesk.com/hc/en-us/articles/9255441933073-Brave-Wallet-Guide-Settings-Connection-to-Biswap-",
+      "https://hexafinity.zendesk.com/hc/en-us/articles/9255441933073-Brave-Wallet-Guide-Settings-Connection-to-HexaFinity-",
     instanceCheckRule: InstanceCheckRules[ConnectorsTitleTypes.BraveWallet],
   },
   {
@@ -128,7 +128,7 @@ const connectors: Config[] = [
 ];
 
 export const HOW_TO_CONNECT_WALLET_LINK =
-  "https://biswap.zendesk.com/hc/en-us/articles/9302726358033-Connect-Crypto-Wallet-Enjoy-Biswap-to-the-Fullest-";
+  "https://hexafinity.zendesk.com/hc/en-us/articles/9302726358033-Connect-Crypto-Wallet-Enjoy-HexaFinity-to-the-Fullest-";
 
 export default connectors;
 export const connectorLocalStorageKey = "connectorId";

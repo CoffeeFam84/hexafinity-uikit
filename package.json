@@ -1,14 +1,14 @@
 {
-  "name": "@biswap/uikit",
+  "name": "@hexafinity/uikit",
   "version": "0.63.1",
-  "description": "Set of UI components for Biswap projects",
+  "description": "Set of UI components for Hexafinity projects",
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/biswapcom/biswap-front-uikit",
+  "repository": "https://github.com/CoffeeFam84/hexafinity-uikit",
   "license": "MIT",
   "scripts": {
     "start": "yarn storybook",

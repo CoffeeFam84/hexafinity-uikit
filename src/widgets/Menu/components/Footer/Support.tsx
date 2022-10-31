@@ -40,7 +40,7 @@ const Suport: React.FC = () => {
   return (
     <Wrapper>
       <Title>Support 24/7</Title>
-      <LinkBtn href="https://t.me/biswap" target="_blank">
+      <LinkBtn href="https://t.me/hexafinity" target="_blank">
         Contact us
         <TelegramIcon width="24px" color="contrast" ml="4px" />
       </LinkBtn>
