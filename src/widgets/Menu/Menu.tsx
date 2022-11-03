@@ -3,14 +3,16 @@ import throttle from "lodash/throttle";
 import styled, { DefaultTheme } from "styled-components";
 
 // components
-import { Box } from "../../components/Box";
 import Flex from "../../components/Box/Flex";
 import Footer from "./components/Footer/Footer";
-import MenuItems from "../../components/MenuItems/MenuItems";
-import Logo from "./components/Logo";
+import Logo from "./components/UserEvents/Logo";
 import UserBlock from "./components/UserBlock";
-import BlockChainWeekEvent from "./components/UserEvents/BlockChainWeekEvent";
+import Panel from './components/Panel';
 import { WarningSolidIcon } from "../../components/Svg";
+import { HmaskIcon } from "./icons"
+import { links, SIDEBAR_WIDTH_FULL } from './config';
+
+
 
 // context
 import { MenuContext } from "./context";
@@ -29,9 +31,11 @@ import {
 } from "./config";
 
 // types
-import { NavProps } from "./types";
+import { LangType, NavProps } from "./types";
+
 
 const Wrapper = styled.div`
+  background: white;
   position: relative;
   width: 100%;
 `;
@@ -64,7 +68,7 @@ const FishingWarn = styled.div<{ showFishingWarn: boolean }>`
   ${({ theme }) => theme.mediaQueries.sm} {
     padding: 10px 40px 10px 100px;
     height: ${({ showFishingWarn }) =>
-      !showFishingWarn ? "0px" : `${FISHING_BANNER_HEIGHT}px`};
+    !showFishingWarn ? "0px" : `${FISHING_BANNER_HEIGHT}px`};
   }
 `;
 const Label = styled.span`
@@ -87,26 +91,26 @@ const StyledImgWarnIcon = styled(WarningSolidIcon)`
   }
 `;
 
-const StyledNav = styled.nav<{ menuBg: boolean; isMobileMenuOpened: boolean }>`
+const StyledNav = styled.nav<{ showMenu: boolean }>`
+  position: fixed;
+  padding: 40px 16px 40px 8px;
+  top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
+  left: 0;
+  transition: top 0.2s;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: ${getBackground};
+  background-color: ${({ theme }) => "white"};
+  border-bottom: solid 2px rgba(133, 133, 133, 0.1);
+  z-index: 20;
   transform: translate3d(0, 0, 0);
-  padding-left: 16px;
-  padding-right: 16px;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    background-color: ${({ theme, menuBg }) =>
-      menuBg ? theme.nav.background : "transparent"};
-  } ;
 `;
 
 const FixedContainer = styled.div.attrs({
   id: "menu-container",
-})<{ showMenu: boolean; height: number }>`
+}) <{ showMenu: boolean; height: number }>`
   position: fixed;
   top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height}px`)};
   left: 0;
@@ -123,7 +127,8 @@ const TopBannerContainer = styled.div<{ height: number }>`
   width: 100%;
 `;
 
-const BodyWrapper = styled(Box)`
+const BodyWrapper = styled.div<{ isPushed: boolean }>`
+  margin-left: ${({ isPushed }) => (isPushed ? `${SIDEBAR_WIDTH_FULL}px` : '55px')};
   position: relative;
   display: flex;
 `;
@@ -140,7 +145,7 @@ const Menu: React.FC<NavProps> = ({
   // userMenu,
   banner,
   // isDark,
-  links,
+
   subLinks,
   activeItem,
   activeSubItem,
@@ -170,6 +175,7 @@ const Menu: React.FC<NavProps> = ({
   eventButtonLogo,
 }) => {
   const { isMobile } = useMatchBreakpoints();
+  const [isPushed, setIsPushed] = useState(!isMobile);
   const [showMenu, setShowMenu] = useState<boolean>(true);
   const [menuBg, setMenuBg] = useState<boolean>(false);
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
@@ -273,58 +279,25 @@ const Menu: React.FC<NavProps> = ({
           showMenu={showMenu}
           height={isMobileMenuOpened ? 0 : totalTopMenuHeight}
         >
-          {/*{showFishingWarn && (*/}
-          {/*  <FishingWarn showFishingWarn={showFishingWarn}>*/}
-          {/*    <StyledImgWarnIcon />*/}
-          {/*    <Label>Beware of fake HexaFinity websites! Use only official site: hexafinity.org</Label>*/}
-          {/*    <Button variant="text" scale="sm" onClick={closeWarn}>*/}
-          {/*      <CloseIcon color="background" />*/}
-          {/*    </Button>*/}
-          {/*  </FishingWarn>*/}
-          {/*)}*/}
-          {banner && (
-            <TopBannerContainer height={topBannerHeight}>
-              {banner}
-            </TopBannerContainer>
-          )}
-          <StyledNav menuBg={menuBg} isMobileMenuOpened={isMobileMenuOpened}>
-            <Flex>
-              <Logo href={homeLink?.href ?? "/"} />
-              <MenuItems
-                items={links}
-                activeItem={activeItem}
-                activeSubItem={activeSubItem}
-                isMobileMenuOpened={isMobileMenuOpened}
-                mobileMenuCallback={setIsMobileMenuOpened}
-                ml="24px"
-              />
-            </Flex>
+          <Panel
+            isPushed={isPushed}
+            isMobile={isMobile}
+            showMenu={showMenu}
+            pushNav={setIsPushed}
+            links={links} isDark={false} toggleTheme={function (isDark: boolean): void {
+              throw new Error("Function not implemented.");
+            }} currentLang={""} langs={[]} setLang={function (lang: LangType): void {
+              throw new Error("Function not implemented.");
+            }} />
+          <StyledNav showMenu={showMenu}>
+            <Logo isPushed={isPushed}
+              togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
+              isDark={true}
+              href={homeLink?.href ?? "/"} />
+
+
             <Flex alignItems="center" height="100%">
-              {/*<NetworkSwitcher*/}
-              {/*  options={[*/}
-              {/*    {*/}
-              {/*      label: 'BSC',*/}
-              {/*      icon: <BSCIcon className="icon"/>,*/}
-              {/*      value: 56,*/}
-              {/*      bg: '#F0B90B',*/}
-              {/*    },*/}
-              {/*    {*/}
-              {/*      label: 'Avalanche',*/}
-              {/*      icon: <AvalancheIcon className="icon"/>,*/}
-              {/*      value: 43114,*/}
-              {/*      bg: '#E84142',*/}
-              {/*    },*/}
-              {/*  ]}*/}
-              {/*  onChange={handleNetworkChange}*/}
-              {/*  currentNetwork={currentNetwork}*/}
-              {/*/>*/}
-              {/*{userMenu}*/}
-              {withEvent && !isMobile && (
-                <BlockChainWeekEvent
-                  eventButtonLogo={eventButtonLogo}
-                  href={homeLink?.href ?? "/"}
-                />
-              )}
+              <HmaskIcon />
               <UserBlock
                 clearTransaction={clearTransaction}
                 account={account}
@@ -338,15 +311,9 @@ const Menu: React.FC<NavProps> = ({
               />
             </Flex>
           </StyledNav>
-          {withEvent && isMobile && !isMobileMenuOpened && (
-            <BlockChainWeekEvent
-              eventButtonLogo={eventButtonLogo}
-              href={homeLink?.href ?? "/"}
-            />
-          )}
         </FixedContainer>
         {/*<BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>*/}
-        <BodyWrapper>
+        <BodyWrapper isPushed={isPushed}>
           <Inner isPushed={false} showMenu={showMenu}>
             {children}
             <Footer

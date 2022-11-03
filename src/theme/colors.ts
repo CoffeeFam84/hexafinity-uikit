@@ -7,12 +7,12 @@ export const baseColors = {
   dark: "#102648",
 
   //BS
-  primary: "#1263F1",
+  primary: "#11A9FF",
   secondary: "#F93B5D",
   success: "#1DC872",
   warning: "#FFDB1C",
   boost: "#7412F1",
-  backgroundDark: "#07162D",
+  backgroundDark: "#041647",
   backgroundLight: "#F9FAFD",
   white: "#FFFFFF",
   pastelBlue: "#749BD8",
@@ -137,7 +137,7 @@ export const darkColors: Colors = {
   text: "#708DB7",
   disabled: "#F2F6FC",
   textDisabled: "#708DB7",
-  textSubtle: "#749BD8",
+  textSubtle: "#FFFFFF",
   borderColor: "#524B63",
   card: "#102648",
   dropDown: "#1C3254",

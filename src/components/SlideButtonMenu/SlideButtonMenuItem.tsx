@@ -9,7 +9,7 @@ import { tabVariants } from "../TabMenu/types";
 const InactiveButton: PolymorphicComponent<
   SlideButtonMenuItemProps,
   "button"
-> = styled(SlideMenuItem)<SlideButtonMenuItemProps>`
+> = styled(SlideMenuItem) <SlideButtonMenuItemProps>`
   background-color: transparent;
   color: ${({ theme, variant }) =>
     theme.colors[variant === tabVariants.DARK ? "pastelBlue" : "gray900"]};

@@ -59,19 +59,19 @@ const UserMenuComponent: React.FC<{
   text,
   account = "0x8b017905DC96B38f817473dc885F84D4C76bC113",
 }) => {
-  const accountEllipsis = account
-    ? `${account.substring(0, 2)}...${account.substring(account.length - 4)}`
-    : undefined;
-  return (
-    <DropdownMenu items={userMenulinks} py="12px">
-      <UserMenu
-        account={text || accountEllipsis}
-        avatarSrc=""
-        variant={variant}
-      />
-    </DropdownMenu>
-  );
-};
+    const accountEllipsis = account
+      ? `${account.substring(0, 2)}...${account.substring(account.length - 4)}`
+      : undefined;
+    return (
+      <DropdownMenu items={userMenulinks} py="12px">
+        <UserMenu
+          account={text || accountEllipsis}
+          avatarSrc=""
+          variant={variant}
+        />
+      </DropdownMenu>
+    );
+  };
 
 const GlobalMenuModal: React.FC<ModalProps> = ({
   title,

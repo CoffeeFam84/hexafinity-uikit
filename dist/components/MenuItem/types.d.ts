@@ -6,10 +6,12 @@ export interface MenuItemProps {
     variant?: MenuItemVariant;
     statusColor?: keyof Colors;
     showNavBadge?: boolean;
+    children?: any;
 }
 export declare type StyledMenuItemProps = {
     $isActive?: boolean;
     $variant?: MenuItemVariant;
     $statusColor?: keyof Colors;
     showNavBadge?: boolean;
+    children?: any;
 };

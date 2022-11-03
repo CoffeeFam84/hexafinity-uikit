@@ -1,5 +1,4 @@
 export { default as LogoIcon } from "./Icons/Logo";
-export { default as LogoWithTextIcon } from "./Icons/LogoWithText";
 export { default as DownloadIcon } from "./Icons/Download";
 export { default as MouseIcon } from "./Icons/Mouse";
 export { default as HourglassIcon } from "./Icons/Hourglass";
@@ -28,6 +27,9 @@ export { default as ArrowSkipRightIcon } from "./Icons/Arrows/ArrowSkipRight";
 export { default as ArrowSkipLeftIcon } from "./Icons/Arrows/ArrowSkipLeft";
 export { default as ChevronUpDoubleIcon } from "./Icons/Arrows/ChevronUpDouble";
 export { default as ChevronUpTripleIcon } from "./Icons/Arrows/ChevronUpTriple";
+export { default as ArrowDropDownIcon } from "./Icons/ArrowDropDown";
+export { default as ArrowDropUpIcon } from "./Icons/ArrowDropUp";
+export { default as CogIcon } from './Icons/Cog';
 
 //PLUS
 export { default as PlusIcon } from "./Icons/Plus/Plus";

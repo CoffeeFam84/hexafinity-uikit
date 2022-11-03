@@ -8,6 +8,7 @@ export interface MenuItemProps {
   variant?: MenuItemVariant;
   statusColor?: keyof Colors;
   showNavBadge?: boolean;
+  children?: any;
 }
 
 export type StyledMenuItemProps = {
@@ -15,4 +16,5 @@ export type StyledMenuItemProps = {
   $variant?: MenuItemVariant;
   $statusColor?: keyof Colors;
   showNavBadge?: boolean;
+  children?: any;
 };

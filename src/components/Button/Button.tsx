@@ -47,12 +47,12 @@ const Button = <E extends ElementType = "button">(
       <>
         {isValidElement(startIcon) &&
           cloneElement(startIcon, {
-            mr: "0.5rem",
+            // mr: '0.5rem',
           })}
         {isLoading ? loadingText : children}
         {isValidElement(endIconElement) &&
           cloneElement(endIconElement, {
-            ml: "0.5rem",
+            // ml: '0.5rem',
           })}
       </>
     </StyledButton>

@@ -14,10 +14,15 @@ export interface SlideButtonMenuProps extends SpaceProps {
 
 export interface SlideButtonMenuItemProps extends SlideButtonMenuProps {
   isActive?: boolean;
+  disabled?: boolean;
+  scale?: any;
+  customClass?: any;
   setWidth?: Dispatch<SetStateAction<any>>;
   blockOffset?: number;
   itemIndex?: number;
   onAction?: (index: number) => void;
+  variant?: any;
+  children?: any;
 }
 
 export type SlideButtonProps<P extends ElementType = "button"> =
