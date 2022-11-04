@@ -137,7 +137,7 @@ export const darkColors: Colors = {
   text: "#708DB7",
   disabled: "#F2F6FC",
   textDisabled: "#708DB7",
-  textSubtle: "#FFFFFF",
+  textSubtle: "#749BD8",
   borderColor: "#524B63",
   card: "#102648",
   dropDown: "#1C3254",

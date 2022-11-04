@@ -41,7 +41,7 @@ const Wrapper = styled.footer`
 
 const InnerRow = styled.div`
   display: grid;
-  max-width: 1120px;
+  max-width: 1600px;
   margin: 0 auto;
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas:

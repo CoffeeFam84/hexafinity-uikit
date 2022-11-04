@@ -88,8 +88,6 @@ export const links = [
     href: ''
   }
 ];
-
-// export const links: MenuItemsType[] = [
 //   {
 //     label: "Home",
 //     href: "/",
