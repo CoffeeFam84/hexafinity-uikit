@@ -58,10 +58,10 @@ const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   max-width: 100%;
   border-radius: 40px;
   background-color: ${({ theme }) => theme.colors.backgroundLight};
-  margin-right: 40px;
 
   ${({ theme }) => theme.mediaQueries.nav} {
     margin-left: ${({ isPushed }) => `${isPushed ? (SIDEBAR_WIDTH_FULL + 40) : (SIDEBAR_WIDTH_REDUCED + 40)}px`};
+    margin-right: 40px;
     max-width: ${({ isPushed }) => `calc(100% - ${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px)`};
   }
 `;
