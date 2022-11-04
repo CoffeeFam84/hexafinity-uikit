@@ -5,9 +5,9 @@ interface Props {
     login: Login;
     logout: () => void;
     pendingTransactions?: number;
-    recentTransaction: any;
-    chainId: any;
-    clearTransaction: any;
+    recentTransaction?: any;
+    chainId?: any;
+    clearTransaction?: any;
     isSwap?: boolean;
     transactionsForUIKit?: any;
 }

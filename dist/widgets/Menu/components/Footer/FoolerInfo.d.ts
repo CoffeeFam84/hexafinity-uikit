@@ -1,8 +1,8 @@
 import React from "react";
-import { BSWPriceProps, FooterStatisticProps } from "../../types";
-interface Props extends BSWPriceProps, FooterStatisticProps {
+import { HexaPriceProps, FooterStatisticProps } from "../../types";
+interface Props extends HexaPriceProps, FooterStatisticProps {
     onClick: () => void;
-    buyBswLink: string;
+    buyHexaLink: string;
 }
 declare const FooterInfo: React.FC<Props>;
 export default FooterInfo;

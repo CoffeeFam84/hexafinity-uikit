@@ -1,4 +1,5 @@
-import { FC } from "react";
-import { BoxProps } from "../Box";
-export declare const Overlay: FC<BoxProps>;
+import { OverlayProps } from "./types";
+declare const Overlay: import("styled-components").StyledComponent<"div", import("styled-components").DefaultTheme, {
+    role: "presentation";
+} & OverlayProps, "role">;
 export default Overlay;
