@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {
-  BSWPriceProps,
+  HexaPriceProps,
   FooterStatisticProps,
   FooterAboutLinks,
   FooterProductLinks,
@@ -21,13 +21,13 @@ import Audit from "./Audit";
 // import Support from './Support'
 
 interface Props
-  extends BSWPriceProps,
+  extends HexaPriceProps,
     FooterStatisticProps,
     FooterAboutLinks,
     FooterProductLinks,
     FooterServiceLinks {
   onClick: () => void;
-  buyBswLink: string;
+  buyHexaLink: string;
 }
 
 const Wrapper = styled.footer`
@@ -36,6 +36,7 @@ const Wrapper = styled.footer`
   padding: 32px 16px;
   transition: padding-left 0.2s;
   z-index: 10;
+  border-radius: 0px 0px 40px 40px;
 `;
 
 const InnerRow = styled.div`
@@ -88,24 +89,24 @@ const InnerRow = styled.div`
 `;
 
 const Footer: React.FC<Props> = ({
-  BSWPriceLabel,
-  BSWPriceValue,
+  HexaPriceLabel,
+  HexaPriceValue,
   onClick,
   footerStatistic,
   aboutLinks,
   productLinks,
   serviceLinks,
-  buyBswLink,
+  buyHexaLink,
 }) => {
   return (
     <Wrapper>
       <InnerRow>
         <FooterInfo
-          BSWPriceLabel={BSWPriceLabel}
-          BSWPriceValue={BSWPriceValue}
+          HexaPriceLabel={HexaPriceLabel}
+          HexaPriceValue={HexaPriceValue}
           onClick={onClick}
           footerStatistic={footerStatistic}
-          buyBswLink={buyBswLink}
+          buyHexaLink={buyHexaLink}
         />
         <About aboutLinks={aboutLinks} />
         <Product productLinks={productLinks} />

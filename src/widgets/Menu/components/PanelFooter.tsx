@@ -1,37 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { CogIcon } from "../../../components/Svg";
-import IconButton from "../../../components/Button/IconButton";
-import { MENU_ENTRY_HEIGHT } from "../config";
 import { PanelProps, PushedProps } from "../types";
-// import CakePrice from "./CakePrice";
-// import ThemeSwitcher from "./ThemeSwitcher";
-// import SocialLinks from "./SocialLinks";
-// import LangSelector from "./LangSelector";
+
+//Components
+import IconButton from "../../../components/Button/IconButton";
+import { Text } from "../../../components/Text";
+import PairPrice from "./PairPrice";
 
 interface Props extends PanelProps, PushedProps { }
 
 const Container = styled.div`
-  flex: none;
   padding: 8px 4px;
-  background-color: ${({ theme }) => theme.nav.background};
-  border-top: solid 2px rgba(133, 133, 133, 0.1);
-`;
-
-const SettingsEntry = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: ${MENU_ENTRY_HEIGHT}px;
-  padding: 0 8px;
-`;
-
-const SocialEntry = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: ${MENU_ENTRY_HEIGHT}px;
-  padding: 0 16px;
+  margin: 0px 20px;
+  background-color: #020E2E;
+  border-radius: 20px;
 `;
 
 const PanelFooter: React.FC<Props> = ({
@@ -40,25 +23,17 @@ const PanelFooter: React.FC<Props> = ({
 }) => {
   if (!isPushed) {
     return (
-      <Container>
-        <IconButton variant="text" onClick={() => pushNav(true)}>
-          <CogIcon />
-        </IconButton>
-      </Container>
+      <IconButton variant="text" onClick={() => pushNav(true)}>
+        <CogIcon />
+      </IconButton>
     );
   }
 
   return (
     <Container>
-      {/* <SocialEntry>
-        <CakePrice cakePriceUsd={cakePriceUsd} />
-        <SocialLinks />
-      </SocialEntry>
-      <SettingsEntry>
-        <ThemeSwitcher isDark={isDark} toggleTheme={toggleTheme} />
-        <LangSelector currentLang={currentLang} langs={langs} setLang={setLang} />
-      </SettingsEntry> */}
-      <div>panel footer</div>
+      <Text>Live Trading Deals</Text>
+      <PairPrice pair="ETH/WBNB" price={3888.75}/>
+      <PairPrice pair="WBNB/BUSD" price={3888.75}/>
     </Container>
   );
 };

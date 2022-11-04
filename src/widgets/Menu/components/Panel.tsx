@@ -12,8 +12,10 @@ interface Props extends PanelProps, PushedProps {
 
 const StyledPanel = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   position: fixed;
-  padding-top: ${({ showMenu }) => (showMenu ? "30px" : "30px")};
-  top: ${({ showMenu }) => (showMenu ? '92px' : `20px`)};
+  margin-top: ${({ showMenu }) => (showMenu ? `${MENU_HEIGHT+6}px` : 0)};
+  padding-top: 60px;
+  padding-bottom: 30px;
+  top: 0;
   left: 0;
   display: flex;
   flex-direction: column;
@@ -21,19 +23,18 @@ const StyledPanel = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   flex-shrink: 0;
   background-color: ${({ theme }) => theme.nav.background};
   width: ${({ isPushed }) => (isPushed ? `${SIDEBAR_WIDTH_FULL}px` : 0)};
-  height: 100vh;
+  height: ${({ showMenu }) => (showMenu ? `calc(100vh - ${MENU_HEIGHT+6}px)` : '100vh')};
   transition: padding-top 0.2s, width 0.2s;
   border-right: ${({ isPushed }) => (isPushed ? "2px solid rgba(133, 133, 133, 0.1)" : 0)};
   z-index: 11;
   overflow: ${({ isPushed }) => (isPushed ? "initial" : "hidden")};
   transform: translate3d(0, 0, 0);
+  border-radius: 0 40px 40px 0;
 
   ${({ theme }) => theme.mediaQueries.nav} {
     border-right: 2px solid rgba(133, 133, 133, 0.1);
     width: ${({ isPushed }) => `${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px`};
   }
-  border-top-right-radius: 40px;
-  border-bottom-right-radius: 40px
 `;
 
 const Panel: React.FC<Props> = (props) => {

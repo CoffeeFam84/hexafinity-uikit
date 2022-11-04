@@ -1,18 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
-import throttle from "lodash/throttle";
 import styled, { DefaultTheme } from "styled-components";
+import throttle from "lodash/throttle";
+
 
 // components
-import Flex from "../../components/Box/Flex";
-import Footer from "./components/Footer/Footer";
-import Logo from "./components/UserEvents/Logo";
+import Logo from "./components/Logo";
 import UserBlock from "./components/UserBlock";
 import Panel from './components/Panel';
-import { WarningSolidIcon } from "../../components/Svg";
-import { HmaskIcon } from "./icons"
-import { links, SIDEBAR_WIDTH_FULL } from './config';
-
-
+import Overlay from "../../components/Overlay/Overlay";
+import Footer from "./components/Footer/Footer";
 
 // context
 import { MenuContext } from "./context";
@@ -21,204 +17,93 @@ import { MenuContext } from "./context";
 import { useMatchBreakpoints } from "../../hooks";
 
 // config
-import {
-  MENU_HEIGHT,
-  MOBILE_EVENT_BUTTON_HEIGHT,
-  TOP_BANNER_HEIGHT,
-  TOP_BANNER_HEIGHT_MOBILE,
-  FISHING_BANNER_HEIGHT,
-  FISHING_MOBILE_BANNER_HEIGHT,
-} from "./config";
+import { MENU_HEIGHT, SIDEBAR_WIDTH_FULL, SIDEBAR_WIDTH_REDUCED } from './config';
 
 // types
 import { LangType, NavProps } from "./types";
 
 
 const Wrapper = styled.div`
-  background: white;
   position: relative;
   width: 100%;
 `;
 
-const getBackground = ({
-  theme,
-  menuBg,
-  isMobileMenuOpened,
-}: {
-  theme: DefaultTheme;
-  menuBg: boolean;
-  isMobileMenuOpened: boolean;
-}) => {
-  if (isMobileMenuOpened) return theme.card.background;
-  if (menuBg && !isMobileMenuOpened) return theme.nav.background;
-  return "transparent";
-};
-
-const FishingWarn = styled.div<{ showFishingWarn: boolean }>`
-  display: flex;
-  align-items: center;
-  background: ${({ theme }) => theme.colors.warning};
-  height: ${({ showFishingWarn }) =>
-    !showFishingWarn ? "0px" : `${FISHING_MOBILE_BANNER_HEIGHT}px`};
-  padding: 10px 20px 10px 70px;
-  transition: height 0.3s ease;
-  position: relative;
-  overflow: hidden;
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    padding: 10px 40px 10px 100px;
-    height: ${({ showFishingWarn }) =>
-    !showFishingWarn ? "0px" : `${FISHING_BANNER_HEIGHT}px`};
-  }
-`;
-const Label = styled.span`
-  font-size: 14px;
-  color: ${({ theme }) => theme.colors.background};
-  flex-grow: 1;
-  font-weight: 600;
-`;
-const StyledImgWarnIcon = styled(WarningSolidIcon)`
-  width: 44px;
-  height: auto;
-  position: absolute;
-  top: 50%;
-  left: 14px;
-  transform: translateY(-50%);
-
-  ${({ theme }) => theme.mediaQueries.sm} {
-    left: 28px;
-    width: 64px;
-  }
-`;
-
 const StyledNav = styled.nav<{ showMenu: boolean }>`
   position: fixed;
-  padding: 40px 16px 40px 8px;
   top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
   left: 0;
   transition: top 0.2s;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-left: 8px;
+  padding-right: 16px;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: ${({ theme }) => "white"};
-  border-bottom: solid 2px rgba(133, 133, 133, 0.1);
+  background-color: white;
   z-index: 20;
   transform: translate3d(0, 0, 0);
 `;
 
-const FixedContainer = styled.div.attrs({
-  id: "menu-container",
-}) <{ showMenu: boolean; height: number }>`
-  position: fixed;
-  top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height}px`)};
-  left: 0;
-  transition: top 0.2s;
-  height: ${({ height }) => `${height}px`};
-  width: 100%;
-  z-index: 20;
-`;
-
-const TopBannerContainer = styled.div<{ height: number }>`
-  height: ${({ height }) => `${height}px`};
-  min-height: ${({ height }) => `${height}px`};
-  max-height: ${({ height }) => `${height}px`};
-  width: 100%;
-`;
-
-const BodyWrapper = styled.div<{ isPushed: boolean }>`
-  margin-left: ${({ isPushed }) => (isPushed ? `${SIDEBAR_WIDTH_FULL}px` : '55px')};
+const BodyWrapper = styled.div`
   position: relative;
   display: flex;
 `;
 
 const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
   flex-grow: 1;
-  transition: margin-top 0.2s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: ${({ showMenu }) => (showMenu ? `${MENU_HEIGHT+6}px` : 0)};
+  transition: margin-top 0.2s;
   transform: translate3d(0, 0, 0);
   max-width: 100%;
+  border-radius: 40px;
+  background-color: ${({ theme }) => theme.colors.backgroundLight};
+  margin-right: 40px;
+
+  ${({ theme }) => theme.mediaQueries.nav} {
+    margin-left: ${({ isPushed }) => `${isPushed ? (SIDEBAR_WIDTH_FULL + 40) : (SIDEBAR_WIDTH_REDUCED + 40)}px`};
+    max-width: ${({ isPushed }) => `calc(100% - ${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px)`};
+  }
+`;
+
+const MobileOnlyOverlay = styled(Overlay)`
+  position: fixed;
+  height: 100%;
+
+  ${({ theme }) => theme.mediaQueries.nav} {
+    display: none;
+  }
 `;
 
 const Menu: React.FC<NavProps> = ({
   linkComponent = "a",
-  // userMenu,
-  banner,
-  // isDark,
-
-  subLinks,
-  activeItem,
-  activeSubItem,
-  children,
-  BSWPriceLabel,
-  BSWPriceValue,
-  footerStatistic,
-  onClick,
-  buyBswLink,
-  aboutLinks,
-  productLinks,
-  serviceLinks,
-  // currentNetwork,
-  // networkChangeToBSC,
-  // networkChangeToAvalanche,
   account,
   login,
   logout,
-  pendingTransactions,
-  recentTransaction,
-  chainId,
-  clearTransaction,
-  isSwap,
-  transactionsForUIKit,
-  withEvent,
-  eventCallback,
-  eventButtonLogo,
+  isDark,
+  toggleTheme,
+  langs,
+  setLang,
+  currentLang,
+  hexaPriceUsd,
+  links,
+  HexaPriceLabel,
+  HexaPriceValue,
+  onClick,
+  buyHexaLink,
+  aboutLinks,
+  productLinks,
+  serviceLinks,
+  footerStatistic,
+  children,
 }) => {
   const { isMobile } = useMatchBreakpoints();
   const [isPushed, setIsPushed] = useState(!isMobile);
   const [showMenu, setShowMenu] = useState<boolean>(true);
-  const [menuBg, setMenuBg] = useState<boolean>(false);
-  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
-  // const [showFishingWarn, setShowFishingWarn] = useState(true);
 
   const refPrevOffset = useRef(
     typeof window === "undefined" ? 0 : window.pageYOffset
   );
-
-  // const fishingBannerHeight = isMobile
-  //   ? FISHING_MOBILE_BANNER_HEIGHT
-  //   : FISHING_BANNER_HEIGHT
-
-  const topBannerHeight = isMobile
-    ? TOP_BANNER_HEIGHT_MOBILE
-    : TOP_BANNER_HEIGHT;
-
-  const TopMenuWithBannerHeight = banner
-    ? MENU_HEIGHT + topBannerHeight
-    : MENU_HEIGHT;
-
-  // const TopMenuWithAllBannersHeight = showFishingWarn
-  //   ? TopMenuWithBannerHeight + fishingBannerHeight
-  //   : TopMenuWithBannerHeight;
-
-  const totalTopMenuHeight =
-    withEvent && isMobile
-      ? TopMenuWithBannerHeight + MOBILE_EVENT_BUTTON_HEIGHT
-      : TopMenuWithBannerHeight;
-
-  // const closeWarn = () => {
-  //   localStorage.setItem("showFishingWarn", JSON.stringify(false));
-  //   setShowFishingWarn(false);
-  // };
-  //
-  // useEffect(() => {
-  //   if (!localStorage.getItem("showFishingWarn")) {
-  //     localStorage.setItem("showFishingWarn", JSON.stringify(true));
-  //   }
-  //   if (localStorage.getItem("showFishingWarn") === JSON.stringify(true)) {
-  //     setShowFishingWarn(true);
-  //   }
-  // }, [showFishingWarn]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -230,21 +115,15 @@ const Menu: React.FC<NavProps> = ({
       // Always show the menu when user reach the top
       if (isTopOfPage) {
         setShowMenu(true);
-        setMenuBg(false);
       }
       // Avoid triggering anything at the bottom because of layout shift
       else if (!isBottomOfPage) {
-        if (
-          currentOffset < refPrevOffset.current ||
-          currentOffset <= totalTopMenuHeight
-        ) {
+        if ( currentOffset < refPrevOffset.current) {
           // Has scroll up
           setShowMenu(true);
-          setMenuBg(true);
         } else {
           // Has scroll down
           setShowMenu(false);
-          setMenuBg(true);
         }
       }
       refPrevOffset.current = currentOffset;
@@ -255,78 +134,52 @@ const Menu: React.FC<NavProps> = ({
     return () => {
       window.removeEventListener("scroll", throttledHandleScroll);
     };
-  }, [totalTopMenuHeight]);
-
-  // const handleNetworkChange = (option: OptionProps): void => {
-  //   if (option.value !== currentNetwork) {
-  //     networkChangeToBSC()
-  //   }
-  //   if (option.value !== currentNetwork) {
-  //     networkChangeToAvalanche()
-  //   }
-  // }
+  }, []);
 
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
 
-  // exclude Home link from displayed in menu
-  const filteredLinks = links.filter((link) => link.label !== "Home");
 
   return (
     <MenuContext.Provider value={{ linkComponent }}>
       <Wrapper>
-        <FixedContainer
-          showMenu={showMenu}
-          height={isMobileMenuOpened ? 0 : totalTopMenuHeight}
-        >
+        <StyledNav showMenu={showMenu}>
+          <Logo
+            isPushed={isPushed}
+            togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
+            isDark={isDark}
+            href={homeLink?.href ?? "/"}
+          />
+          <UserBlock account={account} login={login} logout={logout} />
+        </StyledNav>
+        <BodyWrapper>
           <Panel
             isPushed={isPushed}
             isMobile={isMobile}
             showMenu={showMenu}
+            isDark={isDark}
+            toggleTheme={toggleTheme}
+            langs={langs}
+            setLang={setLang}
+            currentLang={currentLang}
+            hexaPriceUsd={hexaPriceUsd}
             pushNav={setIsPushed}
-            links={links} isDark={false} toggleTheme={function (isDark: boolean): void {
-              throw new Error("Function not implemented.");
-            }} currentLang={""} langs={[]} setLang={function (lang: LangType): void {
-              throw new Error("Function not implemented.");
-            }} />
-          <StyledNav showMenu={showMenu}>
-            <Logo isPushed={isPushed}
-              togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
-              isDark={true}
-              href={homeLink?.href ?? "/"} />
-
-
-            <Flex alignItems="center" height="100%">
-              <HmaskIcon />
-              <UserBlock
-                clearTransaction={clearTransaction}
-                account={account}
-                login={login}
-                logout={logout}
-                recentTransaction={recentTransaction}
-                chainId={chainId}
-                pendingTransactions={pendingTransactions}
-                isSwap={isSwap}
-                transactionsForUIKit={transactionsForUIKit}
-              />
-            </Flex>
-          </StyledNav>
-        </FixedContainer>
-        {/*<BodyWrapper mt={!subLinks ? `${totalTopMenuHeight + 1}px` : "0"}>*/}
-        <BodyWrapper isPushed={isPushed}>
-          <Inner isPushed={false} showMenu={showMenu}>
+            links={links}
+          />
+          <Inner isPushed={isPushed} showMenu={showMenu}>
             {children}
             <Footer
-              BSWPriceLabel={BSWPriceLabel}
-              BSWPriceValue={BSWPriceValue}
+              HexaPriceLabel={HexaPriceLabel}
+              HexaPriceValue={HexaPriceValue}
               footerStatistic={footerStatistic}
               onClick={onClick}
-              buyBswLink={buyBswLink}
+              buyHexaLink={buyHexaLink}
               aboutLinks={aboutLinks}
               productLinks={productLinks}
               serviceLinks={serviceLinks}
             />
           </Inner>
+          <MobileOnlyOverlay show={isPushed} onClick={() => setIsPushed(false)} role="presentation" />
         </BodyWrapper>
       </Wrapper>
     </MenuContext.Provider>

@@ -15,8 +15,8 @@ import { Modal, ModalProps, useModal } from "../Modal";
 import UserMenu from "./components/UserMenu";
 import { Variant, variants } from "./components/UserMenu/types";
 import {
-  BSWPriceValue,
-  BSWPriceLabel,
+  HexaPriceValue,
+  HexaPriceLabel,
   footerStatistic,
   aboutLinks,
   productLinks,
@@ -116,17 +116,15 @@ const defaultProps = {
   // langs,
   setLang: noop,
   currentLang: "EN",
-  cakePriceUsd: 0.023158668932877668,
+  hexaPriceUsd: 0.023158668932877668,
   links,
-  // subLinks: links[0].items,
-  profile: null,
   userMenu: (
     <UserMenuComponent account="0xbdda50183d817c3289f895a4472eb475967dc980" />
   ),
   globalMenu: <GlobalMenuComponent />,
   activeItem: "/swap",
   activeSubItem: "https://exchange.pancakeswap.finance",
-  buyCakeLabel: "Buy CAKE",
+  buyHexaLabel: "Buy CAKE",
   withEvent: true,
   eventCallback: noop,
 };
@@ -138,15 +136,15 @@ const ConnectedTemplate: React.FC<NavProps> = (args) => {
     <BrowserRouter>
       <Menu
         {...args}
-        BSWPriceLabel={BSWPriceLabel}
-        BSWPriceValue={BSWPriceValue}
+        HexaPriceLabel={HexaPriceLabel}
+        HexaPriceValue={HexaPriceValue}
         footerStatistic={footerStatistic}
         onClick={noop}
         aboutLinks={aboutLinks}
         productLinks={productLinks}
         serviceLinks={serviceLinks}
       >
-        <Box pt="113px">
+        <Box>
           <Text bold fontSize="24px" as="h1" mb="8px" color="white">
             Page body
           </Text>

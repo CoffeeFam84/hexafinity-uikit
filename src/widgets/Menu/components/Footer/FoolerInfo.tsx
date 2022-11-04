@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import { BSWPriceProps, FooterStatisticProps } from "../../types";
+import { HexaPriceProps, FooterStatisticProps } from "../../types";
 import { formatSpacingAmount } from "../../../../util/formatSpacingAmount";
 
-import BSWPrice from "./BSWPrice";
+import HexaPrice from "./HexaPrice";
 import ConnectMetamask from "./ConnectMetamask";
-import BuyBSW from "./BuyBSW";
+import BuyHexa from "./BuyHexa";
 
-interface Props extends BSWPriceProps, FooterStatisticProps {
+interface Props extends HexaPriceProps, FooterStatisticProps {
   onClick: () => void;
-  buyBswLink: string;
+  buyHexaLink: string;
 }
 
 const Wrapper = styled.div`
@@ -88,19 +88,19 @@ const InfoListValue = styled.span`
 `;
 
 const FooterInfo: React.FC<Props> = ({
-  BSWPriceLabel,
-  BSWPriceValue,
+  HexaPriceLabel,
+  HexaPriceValue,
   onClick,
   footerStatistic,
-  buyBswLink,
+  buyHexaLink,
 }) => {
   return (
     <Wrapper>
       <LeftInfo>
-        <BSWPrice BSWPriceLabel={BSWPriceLabel} BSWPriceValue={BSWPriceValue} />
+        <HexaPrice HexaPriceLabel={HexaPriceLabel} HexaPriceValue={HexaPriceValue} />
         <FlexWrap>
           <ConnectMetamask onClick={onClick} />
-          <BuyBSW buyBswLink={buyBswLink} />
+          <BuyHexa buyHexaLink={buyHexaLink} />
         </FlexWrap>
       </LeftInfo>
       <InfoList>

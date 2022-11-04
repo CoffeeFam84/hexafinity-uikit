@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import Button from "../../../../components/Button/Button";
 import {
   WalletOpacityIcon,
@@ -14,18 +13,12 @@ interface Props {
   login: Login;
   logout: () => void;
   pendingTransactions?: number;
-  recentTransaction: any;
-  chainId: any;
-  clearTransaction: any;
+  recentTransaction?: any;
+  chainId?: any;
+  clearTransaction?: any;
   isSwap?: boolean;
   transactionsForUIKit?: any;
 }
-
-const WalletWrap = styled.div`
-  display: flex;
-  align-items: center;
-  border-radius: 8px;
-`;
 
 // const CurrencyValue = styled.div`
 //   padding: 0 16px;
@@ -64,12 +57,6 @@ const UserBlock: React.FC<Props> = ({
   return (
     <div>
       {account ? (
-        <WalletWrap>
-          {/* <CurrencyValue> */}
-          {/*  <Text fontSize="14px" color="text"> */}
-          {/*    12.34 BNB */}
-          {/*  </Text> */}
-          {/* </CurrencyValue> */}
           <Button
             variant={pendingTransactions ? "success" : "primary"}
             scale={isSm || isXs ? "md" : "lg"}
@@ -90,7 +77,6 @@ const UserBlock: React.FC<Props> = ({
               </>
             )}
           </Button>
-        </WalletWrap>
       ) : (
         <Button
           scale={isSm || isXs ? "md" : "lg"}

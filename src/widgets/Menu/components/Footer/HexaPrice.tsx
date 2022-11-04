@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import Text from "../../../../components/Text/Text";
-import { BSWPriceProps } from "../../types";
+import { HexaPriceProps } from "../../types";
 // import { formatSpacingAmount } from "../../../util/formatSpacingAmount";
 
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 38px 1fr;
   grid-template-areas:
-    "logo bsw-title"
-    "logo bsw-value";
+    "logo hexa-title"
+    "logo hexa-value";
   grid-column-gap: 8px;
   position: relative;
 
@@ -23,9 +23,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const BSWPrice: React.FC<BSWPriceProps> = ({
-  BSWPriceLabel,
-  BSWPriceValue,
+const HexaPrice: React.FC<HexaPriceProps> = ({
+  HexaPriceLabel,
+  HexaPriceValue,
 }) => {
   return (
     <Wrapper>
@@ -73,14 +73,14 @@ const BSWPrice: React.FC<BSWPriceProps> = ({
         </defs>
       </svg>
       <Text color="gray900" fontSize="12px" lineHeight="18px">
-        {BSWPriceLabel}
+        {HexaPriceLabel}
       </Text>
       <Text color="contrast" fontSize="16px" lineHeight="19px" bold>
-        {/*${formatSpacingAmount(BSWPriceValue)}*/}
-        {BSWPriceValue}
+        {/*${formatSpacingAmount(HexaPriceValue)}*/}
+        {HexaPriceValue}
       </Text>
     </Wrapper>
   );
 };
 
-export default BSWPrice;
+export default HexaPrice;
