@@ -36,7 +36,6 @@ const Wrapper = styled.footer`
   padding: 32px 16px;
   transition: padding-left 0.2s;
   z-index: 10;
-  border-radius: 0px 0px 40px 40px;
 `;
 
 const InnerRow = styled.div`
