@@ -24,15 +24,43 @@ export interface LinkStatus {
 }
 
 export interface NavProps 
-  extends PanelProps, HexaPriceProps, FooterAboutLinks, 
+  extends HexaPriceProps, FooterAboutLinks, 
   FooterProductLinks, FooterServiceLinks, ConnectMetaProps, 
   FooterStatisticProps 
 {
   buyHexaLink: string;
+  networkChangeToBSC?: any;
+  currentNetwork?: any;
   account?: string;
   login: Login;
+  profile?: Profile;
   logout: () => void;
-  children: React.ReactNode;
+  //---------
+  linkComponent?: ElementType;
+  userMenu?: ReactElement;
+  banner?: ReactElement;
+  globalMenu?: ReactElement;
+  links: Array<MenuItemsType>;
+  subLinks: Array<SubMenuItemsType>;
+  activeItem: string;
+  activeSubItem: string;
+  isDark: boolean;
+  toggleTheme: (isDark: boolean) => void;
+  hexaPriceUsd?: number;
+  currentLang: string;
+  buyHexaLabel: string;
+  setLang: (lang: Language) => void;
+  pendingTransactions?: number;
+  recentTransaction?: any;
+  chainId?: any;
+  clearTransaction?: any;
+  isSwap?: boolean;
+  transactionsForUIKit?: any;
+  //---------
+  withEvent?: boolean;
+  eventCallback?: () => void;
+  children?: ReactNode;
+  eventButtonLogo?: () => JSX.Element;
 }
 
 export interface FooterStatisticProps {
@@ -94,15 +122,4 @@ export interface MenuEntry {
   href?: string;
   calloutClass?: string;
   initialOpenState?: boolean;
-}
-
-export interface PanelProps {
-  isDark: boolean;
-  toggleTheme: (isDark: boolean) => void;
-  hexaPriceUsd?: number;
-  currentLang: string;
-  langs: LangType[];
-  setLang: (lang: LangType) => void;
-  links: Array<MenuEntry>;
-  linkComponent?: React.ElementType;
 }

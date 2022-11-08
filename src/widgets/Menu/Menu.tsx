@@ -5,8 +5,9 @@ import throttle from "lodash/throttle";
 
 // components
 import Logo from "./components/Logo";
+import Flex from "../../components/Box/Flex";
 import UserBlock from "./components/UserBlock";
-import Panel from './components/Panel';
+import MenuItems from "../../components/MenuItems";
 import Overlay from "../../components/Overlay/Overlay";
 import Footer from "./components/Footer/Footer";
 
@@ -17,7 +18,12 @@ import { MenuContext } from "./context";
 import { useMatchBreakpoints } from "../../hooks";
 
 // config
-import { MENU_HEIGHT, SIDEBAR_WIDTH_FULL, SIDEBAR_WIDTH_REDUCED } from './config';
+import { 
+  MENU_HEIGHT,
+  MOBILE_EVENT_BUTTON_HEIGHT,
+  TOP_BANNER_HEIGHT,
+  TOP_BANNER_HEIGHT_MOBILE,
+} from './config';
 
 // types
 import { LangType, NavProps } from "./types";
@@ -28,21 +34,37 @@ const Wrapper = styled.div`
   width: 100%;
 `;
 
-const StyledNav = styled.nav<{ showMenu: boolean }>`
-  position: fixed;
-  top: ${({ showMenu }) => (showMenu ? 0 : `-${MENU_HEIGHT}px`)};
-  left: 0;
-  transition: top 0.2s;
+const StyledNav = styled.nav<{ menuBg: boolean;}>`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-left: 8px;
-  padding-right: 16px;
   width: 100%;
   height: ${MENU_HEIGHT}px;
-  background-color: white;
-  z-index: 20;
+  padding-left: 8px;
+  padding-right: 16px;
   transform: translate3d(0, 0, 0);
+
+  ${({ theme }) => theme.mediaQueries.sm} {
+    background-color: ${({ theme, menuBg }) =>
+      menuBg ? "white" : "transparent"};
+  };
+`;
+
+const FixedContainer = styled.div<{ showMenu: boolean; height: number }>`
+  position: fixed;
+  top: ${({ showMenu, height }) => (showMenu ? 0 : `-${height}px`)};
+  left: 0;
+  transition: top 0.2s;
+  height: ${({ height }) => `${height}px`};
+  width: 100%;
+  z-index: 20;
+`;
+
+const TopBannerContainer = styled.div<{ height: number }>`
+  height: ${({ height }) => `${height}px`};
+  min-height: ${({ height }) => `${height}px`};
+  max-height: ${({ height }) => `${height}px`};
+  width: 100%;
 `;
 
 const BodyWrapper = styled.div`
@@ -50,20 +72,12 @@ const BodyWrapper = styled.div`
   display: flex;
 `;
 
-const Inner = styled.div<{ isPushed: boolean; showMenu: boolean }>`
+const Inner = styled.div<{ showMenu: boolean }>`
   flex-grow: 1;
-  margin-top: ${({ showMenu }) => (showMenu ? `${MENU_HEIGHT+6}px` : 0)};
-  transition: margin-top 0.2s;
+  transition: margin-top 0.2s, margin-left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translate3d(0, 0, 0);
   max-width: 100%;
-  border-radius: 40px;
-  background-color: ${({ theme }) => theme.colors.backgroundLight};
-
-  ${({ theme }) => theme.mediaQueries.nav} {
-    margin-left: ${({ isPushed }) => `${isPushed ? (SIDEBAR_WIDTH_FULL + 40) : (SIDEBAR_WIDTH_REDUCED + 40)}px`};
-    margin-right: 40px;
-    max-width: ${({ isPushed }) => `calc(100% - ${isPushed ? SIDEBAR_WIDTH_FULL : SIDEBAR_WIDTH_REDUCED}px)`};
-  }
+  padding-top: 64px;
 `;
 
 const MobileOnlyOverlay = styled(Overlay)`
@@ -77,16 +91,19 @@ const MobileOnlyOverlay = styled(Overlay)`
 
 const Menu: React.FC<NavProps> = ({
   linkComponent = "a",
+  banner,
   account,
   login,
   logout,
   isDark,
   toggleTheme,
-  langs,
   setLang,
   currentLang,
   hexaPriceUsd,
   links,
+  subLinks,
+  activeItem,
+  activeSubItem,
   HexaPriceLabel,
   HexaPriceValue,
   onClick,
@@ -96,14 +113,29 @@ const Menu: React.FC<NavProps> = ({
   serviceLinks,
   footerStatistic,
   children,
+  withEvent,
 }) => {
   const { isMobile } = useMatchBreakpoints();
-  const [isPushed, setIsPushed] = useState(!isMobile);
   const [showMenu, setShowMenu] = useState<boolean>(true);
+  const [menuBg, setMenuBg] = useState<boolean>(false);
+  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState<boolean>(false);
 
   const refPrevOffset = useRef(
     typeof window === "undefined" ? 0 : window.pageYOffset
   );
+
+  const topBannerHeight = isMobile
+    ? TOP_BANNER_HEIGHT_MOBILE
+    : TOP_BANNER_HEIGHT;
+
+  const topMenuWithBannerHeight = banner
+    ? MENU_HEIGHT + topBannerHeight
+    : MENU_HEIGHT;
+  
+  const totalTopMenuHeight =
+    withEvent && isMobile
+      ? topMenuWithBannerHeight + MOBILE_EVENT_BUTTON_HEIGHT
+      : topMenuWithBannerHeight;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -115,15 +147,21 @@ const Menu: React.FC<NavProps> = ({
       // Always show the menu when user reach the top
       if (isTopOfPage) {
         setShowMenu(true);
+        setMenuBg(false);
       }
       // Avoid triggering anything at the bottom because of layout shift
       else if (!isBottomOfPage) {
-        if ( currentOffset < refPrevOffset.current) {
+        if ( 
+          currentOffset < refPrevOffset.current ||
+          currentOffset <= totalTopMenuHeight  
+        ) {
           // Has scroll up
           setShowMenu(true);
+          setMenuBg(true);
         } else {
           // Has scroll down
           setShowMenu(false);
+          setMenuBg(true);
         }
       }
       refPrevOffset.current = currentOffset;
@@ -134,7 +172,7 @@ const Menu: React.FC<NavProps> = ({
     return () => {
       window.removeEventListener("scroll", throttledHandleScroll);
     };
-  }, []);
+  }, [totalTopMenuHeight]);
 
   // Find the home link if provided
   const homeLink = links.find((link) => link.label === "Home");
@@ -143,30 +181,32 @@ const Menu: React.FC<NavProps> = ({
   return (
     <MenuContext.Provider value={{ linkComponent }}>
       <Wrapper>
-        <StyledNav showMenu={showMenu}>
-          <Logo
-            isPushed={isPushed}
-            togglePush={() => setIsPushed((prevState: boolean) => !prevState)}
-            isDark={isDark}
-            href={homeLink?.href ?? "/"}
-          />
-          <UserBlock account={account} login={login} logout={logout} />
-        </StyledNav>
+        <FixedContainer
+          showMenu={showMenu}
+          height={isMobileMenuOpened ? 0 : totalTopMenuHeight}
+        >
+          {banner && (
+            <TopBannerContainer height={topBannerHeight}>
+              {banner}
+            </TopBannerContainer>
+          )}
+          <StyledNav menuBg={menuBg}>
+            <Flex>
+              <Logo href={homeLink?.href ?? "/"} />
+              <MenuItems
+                items={links}
+                activeItem={activeItem}
+                activeSubItem={activeSubItem}
+                isMobileMenuOpened={isMobileMenuOpened}
+                mobileMenuCallback={setIsMobileMenuOpened}
+                ml="24px"
+              />
+            </Flex>
+            <UserBlock account={account} login={login} logout={logout} />
+          </StyledNav>
+        </FixedContainer>
         <BodyWrapper>
-          <Panel
-            isPushed={isPushed}
-            isMobile={isMobile}
-            showMenu={showMenu}
-            isDark={isDark}
-            toggleTheme={toggleTheme}
-            langs={langs}
-            setLang={setLang}
-            currentLang={currentLang}
-            hexaPriceUsd={hexaPriceUsd}
-            pushNav={setIsPushed}
-            links={links}
-          />
-          <Inner isPushed={isPushed} showMenu={showMenu}>
+          <Inner showMenu={showMenu}>
             {children}
             <Footer
               HexaPriceLabel={HexaPriceLabel}
@@ -179,7 +219,6 @@ const Menu: React.FC<NavProps> = ({
               serviceLinks={serviceLinks}
             />
           </Inner>
-          <MobileOnlyOverlay show={isPushed} onClick={() => setIsPushed(false)} role="presentation" />
         </BodyWrapper>
       </Wrapper>
     </MenuContext.Provider>

@@ -28,65 +28,219 @@ export const status = {
 export const links = [
   {
     label: "Home",
-    icon: "HomeIcon",
     href: "/",
+    hidden: true,
   },
   {
-    label: "Exchange",
-    icon: "TradeIcon",
-    href: "/exchange"
-  },
-  {
-    label: "Liquidity",
-    icon: "LiquidityIcon",
-    href: "/liquidity",
-  },
-  {
-    label: "Farms",
-    icon: "FarmsIcon",
-    href: "/syrup",
-  },
-  {
-    label: "Launchpools",
-    icon: "LaunchIcon",
-    href: '/ppls'
-  },
-  {
-    label: "Lottery",
-    icon: "LotteryIcon",
-    href: "/nft",
-  },
-  {
-    label: "Competitions",
-    icon: "CompetitionIcon",
+    label: "Trade",
+    href: "/swap",
+    showNavBadge: false,
     items: [
       {
-        label: "Lottery Comp..",
-        href: "/teams",
+        label: "Swap",
+        href: "/swap",
+        leftIcon: "ExchangeOpacity",
+        description: "Item description",
+        badgeType: "success",
+        badgeTitle: "New",
+      },
+      {
+        label: "Expert Trade",
+        leftIcon: "ExpertModeOpacity",
+        // rightIcon: "ArrowUpForward",
+        rightIconFill: "primary",
+        description: "Item description",
+        href: "/liquidity",
+      },
+      {
+        label: "Liquidity",
+        href: "/pool",
+        leftIcon: "LiquidityOpacity",
+        description: "Item description",
       },
     ],
-    calloutClass: "rainbow",
   },
   {
-    label: "$10M Program",
-    icon: "ProgramIcon",
-    href: ''
+    label: "Earn",
+    href: "/earn",
+    showNavBadge: true,
+    items: [
+      {
+        label: "Farms",
+        href: "/pool",
+        leftIcon: "FarmsOpacity",
+        description: "Item description",
+      },
+      {
+        badgeType: "success",
+        badgeTitle: "New",
+        label: "LaunchPools",
+        href: "/pool",
+        leftIcon: "PoolsOpacity",
+        description: "Item description description very long long long",
+        type: DropdownMenuItemType.CONTAINER,
+        links: [
+          {
+            label: "Stake BSW",
+            href: "https://google.com",
+            linkType: DropdownMenuItemType.EXTERNAL_LINK,
+          },
+          {
+            label: "Stake tokens",
+            href: "/polar",
+            linkType: DropdownMenuItemType.INTERNAL_LINK,
+          },
+        ],
+      },
+      {
+        label: "Referral Program",
+        href: "/pool",
+        leftIcon: "ReferralOpacity",
+        description: "Item description",
+      },
+      {
+        label: "IDO",
+        href: "/pool",
+        leftIcon: "IdoOpacity",
+        description: "Item description",
+      },
+    ],
   },
   {
-    label: "News",
-    icon: "NewsIcon",
-    href: ''
+    label: "Win",
+    href: "/",
+    items: [
+      {
+        label: "Lottery",
+        href: "/pool",
+        leftIcon: "LotteryOpacity",
+        description: "Item description",
+        target: "_blank",
+        mobileTarget: "_self",
+      },
+      {
+        label: "Competitions",
+        href: "/pool",
+        leftIcon: "GobletOpacity",
+        description: "Item description",
+      },
+    ],
   },
   {
-    label: "About HF",
-    icon: "AboutIcon",
-    href: ''
+    label: "NFT",
+    href: "/",
+    showNavBadge: true,
+    items: [
+      {
+        label: "NFT Launchpad",
+        href: "/pool",
+        leftIcon: "LaunchpadOpacity",
+        description: "Item description",
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+        target: "_blank",
+        mobileTarget: "_self",
+      },
+      {
+        label: "NFT Earn",
+        href: "/pool",
+        leftIcon: "NFTEarnOpacity",
+        description: "Item description",
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+        target: "_self",
+        mobileTarget: "_self",
+      },
+      {
+        type: DropdownMenuItemType.BANNER,
+        bannerRenderer: getBanner,
+        href: "https://google.com",
+      },
+    ],
   },
   {
-    label: "More",
-    icon: "MoreIcon",
-    href: ''
-  }
+    label: "Info",
+    isExtended: true,
+    items: [
+      {
+        label: "Analytics",
+        leftIcon: "AnalyticsOpacity",
+        href: "https://google.com",
+        description: "Item description",
+      },
+      {
+        label: "Voting",
+        leftIcon: "VotingOpacity",
+        href: "/pool",
+        description: "Item description",
+      },
+      {
+        label: "About BSW",
+        leftIcon: "AboutBSWOpacity",
+        href: "/pool",
+        description: "Item description",
+      },
+      {
+        label: "Team",
+        leftIcon: "TeamOpacity",
+        href: "/pool",
+        description: "Item description",
+      },
+      {
+        label: "$10M Program",
+        leftIcon: "Program10mOpacity",
+        href: "/pool",
+        description: "Item description",
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+      {
+        label: "News",
+        leftIcon: "NewsOpacity",
+        href: "/pool",
+        description: "Item description",
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+      {
+        label: "Docs",
+        leftIcon: "DocsOpacity",
+        href: "/pool",
+        description: "Item description",
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+      {
+        label: "Audit",
+        leftIcon: "AuditProtectionOpacity",
+        href: "/pool",
+        description: "Item description",
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+    ],
+  },
+  {
+    type: ItemTypes.DIVIDER,
+    showItemsOnMobile: true,
+  },
+  {
+    label: "Biswap Products", // if changed label, also should be changed in Accordion component condition
+    href: "/",
+    icon: "ProductsOpacity",
+    isMobileNav: true,
+    showItemsOnMobile: true,
+    items: [
+      {
+        label: "Marketplace",
+        href: "/pool",
+        leftIcon: "Market",
+        description: "Item description",
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+      {
+        label: "GameFi",
+        href: "/pool",
+        leftIcon: "GameFi",
+        description: "Item description",
+        type: DropdownMenuItemType.EXTERNAL_LINK,
+      },
+    ],
+  },
 ];
 //   {
 //     label: "Home",
@@ -537,5 +691,6 @@ export const userMenulinks: DropdownMenuItems[] = [
 
 export const MENU_HEIGHT = 64;
 export const MENU_ENTRY_HEIGHT = 48;
-export const SIDEBAR_WIDTH_FULL = 240;
-export const SIDEBAR_WIDTH_REDUCED = 56;
+export const TOP_BANNER_HEIGHT = 70;
+export const TOP_BANNER_HEIGHT_MOBILE = 84;
+export const MOBILE_EVENT_BUTTON_HEIGHT = 40;

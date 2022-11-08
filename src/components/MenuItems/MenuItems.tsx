@@ -79,7 +79,7 @@ const MenuItems: React.FC<MenuItemsProps> = ({
                       <Box ml="8px" position="relative">
                         {/*{isMarker && <Marker />}*/}
                         <Text
-                          color={isMarker ? "warningPress" : "white"}
+                          color={isMarker ? "warningPress" : "black"}
                           fontSize="14px"
                           lineHeight="20px"
                           fontWeight="600"

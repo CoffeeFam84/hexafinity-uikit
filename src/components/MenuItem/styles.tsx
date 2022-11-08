@@ -32,7 +32,7 @@ const CommonLinkStyles = ({
 
   color: ${$isActive
     ? ({ theme }) => theme.colors.secondary
-    : ({ theme }) => theme.colors.white};
+    : ({ theme }) => theme.colors.dark100};
   font-size: 14px;
   font-weight: 600;
   transition: color 0.4s ease;

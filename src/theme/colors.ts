@@ -92,7 +92,7 @@ export const lightColors: Colors = {
   header: "white",
   background: "#ECF1FF",
   backgroundDisabled: "#C8D4E6",
-  contrast: "# 041647",
+  contrast: "#041647",
   invertedContrast: "#191326",
   input: "#021127",
   inputBorder: "#1C3254",
@@ -110,7 +110,7 @@ export const lightColors: Colors = {
   cardBorder: "#ffffff",
   dropdown: "#ffffff",
   dropdownDeep: "#ffffff",
-  backgroundAlt: "# DAE4FF",
+  backgroundAlt: "#DAE4FF",
   backgroundAlt2: "#ffffff",
   gradients: {
     bubblegum: "linear-gradient(139.73deg, #313D5C 0%, #3D2A54 100%)",
