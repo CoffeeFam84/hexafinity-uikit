@@ -9254,7 +9254,7 @@ var Audit = function () { return (React__default["default"].createElement(Audite
             } })))); };
 var templateObject_1$7, templateObject_2$5;
 
-var Wrapper$1 = styled__default["default"].footer(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(["\n  color: #fff;\n  background: ", ";\n  padding: 32px 16px;\n  transition: padding-left 0.2s;\n  z-index: 10;\n  border-radius: 0px 0px 40px 40px;\n"], ["\n  color: #fff;\n  background: ", ";\n  padding: 32px 16px;\n  transition: padding-left 0.2s;\n  z-index: 10;\n  border-radius: 0px 0px 40px 40px;\n"])), function (_a) {
+var Wrapper$1 = styled__default["default"].footer(templateObject_1$6 || (templateObject_1$6 = __makeTemplateObject(["\n  color: #fff;\n  background: ", ";\n  padding: 32px 16px;\n  transition: padding-left 0.2s;\n  z-index: 10;\n"], ["\n  color: #fff;\n  background: ", ";\n  padding: 32px 16px;\n  transition: padding-left 0.2s;\n  z-index: 10;\n"])), function (_a) {
     var theme = _a.theme;
     return theme.colors.dark700;
 });
